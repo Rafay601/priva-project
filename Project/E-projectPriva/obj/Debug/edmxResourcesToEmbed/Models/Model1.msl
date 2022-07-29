@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database2ModelStoreContainer" CdmEntityContainer="Database2Entities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Database2Model.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Prof_Image" ColumnName="Prof_Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Insurance_Customer">
+      <EntityTypeMapping TypeName="Database2Model.Insurance_Customer">
+        <MappingFragment StoreEntitySet="Insurance_Customer">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Insurance_Type" ColumnName="Insurance_Type" />
+          <ScalarProperty Name="Card_No" ColumnName="Card_No" />
+          <ScalarProperty Name="Expire_Date" ColumnName="Expire_Date" />
+          <ScalarProperty Name="CVV" ColumnName="CVV" />
+          <ScalarProperty Name="Plan_Id" ColumnName="Plan_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Policies">
+      <EntityTypeMapping TypeName="Database2Model.Policy">
+        <MappingFragment StoreEntitySet="Policy">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Plan_Name" ColumnName="Plan_Name" />
+          <ScalarProperty Name="Policy_Duration" ColumnName="Policy_Duration" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicles">
+      <EntityTypeMapping TypeName="Database2Model.Vehicle">
+        <MappingFragment StoreEntitySet="Vehicle">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
+          <ScalarProperty Name="Car_Brand" ColumnName="Car_Brand" />
+          <ScalarProperty Name="Car_No" ColumnName="Car_No" />
+          <ScalarProperty Name="Register_Date" ColumnName="Register_Date" />
+          <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+          <ScalarProperty Name="Car_Type" ColumnName="Car_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

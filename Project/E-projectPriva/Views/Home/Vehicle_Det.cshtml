@@ -1,0 +1,117 @@
+﻿@model E_projectPriva.Models.Vehicle
+@{
+    ViewBag.Title = "Vehicle_Det";
+}
+
+
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+
+    <!-- section begin -->
+    <section id="subheader" class="text-light" style="background-image: url('../../images/background/subheader.jpg');">
+        <div class="center-y relative text-center">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12 text-center">
+                        <h1>Car Details </h1>
+                        <p>Protect Your Vehicle From Priva Insurance</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section close -->
+
+    @using (Html.BeginForm("Vehicle_Det", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {<section aria-label="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h3>Car Details Form</h3>
+                        <p>One of the primary standardized insurance forms used to construct an insurance contract. </p>
+
+                        <div class="spacer-10"></div>
+
+                        <form name="contactForm" id="contact_form" class="form-border" method="post" action="https://www.designesia.com/themes/priva/blank.php">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="field-set">
+                                        <label>Car Model</label>
+                                        @*<input type="text" name="name" id="name" class="form-control" />*@
+                                        @Html.TextBoxFor(a => a.Car_Model, null, new { @class = "form-control" })
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="field-set">
+                                        <label>Car Brand</label>
+                                        @*<input type="text" name="email" id="email" class="form-control">*@
+                                        @Html.TextBoxFor(a => a.Car_Brand, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="field-set">
+                                        <label>Car Number</label>
+                                        @*<input type="text" name="username" id="username" class="form-control">*@
+                                        @Html.TextBoxFor(a => a.Car_No, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="field-set">
+                                        <label>Register Date</label>
+                                        @*<input type="text" name="phone" id="phone" class="form-control">*@
+                                        @Html.TextBoxFor(a => a.Register_Date, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="field-set">
+                                        <label>Owner Name</label>
+                                        <!--<i-->@*nput type="text" name="password" id="password" class="form-control">*@
+                                        @Html.TextBoxFor(a => a.Owner_Name, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="field-set">
+                                        <label>Car Type</label>
+                                        <!--<i-->@*nput type="text" name="password" id="password" class="form-control">*@
+                                        @Html.TextBoxFor(a => a.Car_Type, null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+
+                                <div class="col-md-12">
+
+
+                                    @*<div id="submit" class="pull-left">
+                                            <input type="submit" id="send_message" value="Register Now" class="btn btn-custom color-2">
+                                        </div>*@
+                                    <button type="submit" class="btn btn-custom color-2">Submit</button>
+
+                                    <div id="mail_success" class="success">Your message has been sent successfully.</div>
+                                    <div id="mail_fail" class="error">Sorry, error occured this time sending your message.</div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+</div>
+<!-- content close -->

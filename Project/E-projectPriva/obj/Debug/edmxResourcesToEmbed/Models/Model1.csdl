@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prof_Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Insurance_Customer" Relationship="Database2Model.FK__Insurance__cust___34C8D9D1" FromRole="Customer" ToRole="Insurance_Customer" />
+  </EntityType>
+  <EntityType Name="Insurance_Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Car_Id" Type="Int32" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Insurance_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Card_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expire_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CVV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Plan_Id" Type="Int32" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK__Insurance__Car_I__29572725" FromRole="Insurance_Customer" ToRole="Vehicle" />
+    <NavigationProperty Name="Policy" Relationship="Self.FK__Insurance__Plan___2A4B4B5E" FromRole="Insurance_Customer" ToRole="Policy" />
+    <Property Name="cust_id" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Database2Model.FK__Insurance__cust___34C8D9D1" FromRole="Insurance_Customer" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Policy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Plan_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Policy_Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Insurance_Customer" Relationship="Self.FK__Insurance__Plan___2A4B4B5E" FromRole="Policy" ToRole="Insurance_Customer" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Car_Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Car_Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Car_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Register_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Owner_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Car_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Insurance_Customer" Relationship="Self.FK__Insurance__Car_I__29572725" FromRole="Vehicle" ToRole="Insurance_Customer" />
+  </EntityType>
+  <Association Name="FK__Insurance__Car_I__29572725">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="Insurance_Customer" Type="Self.Insurance_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Insurance_Customer">
+        <PropertyRef Name="Car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Insurance__Plan___2A4B4B5E">
+    <End Role="Policy" Type="Self.Policy" Multiplicity="0..1" />
+    <End Role="Insurance_Customer" Type="Self.Insurance_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policy">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Insurance_Customer">
+        <PropertyRef Name="Plan_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Insurance_Customer" EntityType="Self.Insurance_Customer" />
+    <EntitySet Name="Policies" EntityType="Self.Policy" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+    <AssociationSet Name="FK__Insurance__Car_I__29572725" Association="Self.FK__Insurance__Car_I__29572725">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="Insurance_Customer" EntitySet="Insurance_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Insurance__Plan___2A4B4B5E" Association="Self.FK__Insurance__Plan___2A4B4B5E">
+      <End Role="Policy" EntitySet="Policies" />
+      <End Role="Insurance_Customer" EntitySet="Insurance_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Insurance__cust___34C8D9D1" Association="Database2Model.FK__Insurance__cust___34C8D9D1">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Insurance_Customer" EntitySet="Insurance_Customer" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__Insurance__cust___34C8D9D1">
+    <End Type="Database2Model.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Database2Model.Insurance_Customer" Role="Insurance_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Insurance_Customer">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

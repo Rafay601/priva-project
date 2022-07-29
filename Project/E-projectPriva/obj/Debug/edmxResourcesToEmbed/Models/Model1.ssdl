@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Prof_Image" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Insurance_Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CNIC" Type="varchar" MaxLength="50" />
+    <Property Name="Car_Id" Type="int" />
+    <Property Name="Date" Type="varchar" MaxLength="50" />
+    <Property Name="Insurance_Type" Type="varchar" MaxLength="50" />
+    <Property Name="Card_No" Type="varchar" MaxLength="50" />
+    <Property Name="Expire_Date" Type="varchar" MaxLength="50" />
+    <Property Name="CVV" Type="varchar" MaxLength="50" />
+    <Property Name="Plan_Id" Type="int" />
+    <Property Name="cust_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Policy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Plan_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Policy_Duration" Type="varchar" MaxLength="50" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Car_Model" Type="varchar" MaxLength="50" />
+    <Property Name="Car_Brand" Type="varchar" MaxLength="50" />
+    <Property Name="Car_No" Type="varchar" MaxLength="50" />
+    <Property Name="Register_Date" Type="varchar" MaxLength="50" />
+    <Property Name="Owner_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Car_Type" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Insurance__Car_I__29572725">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="Insurance_Customer" Type="Self.Insurance_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Insurance_Customer">
+        <PropertyRef Name="Car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Insurance__cust___34C8D9D1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Insurance_Customer" Type="Self.Insurance_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Insurance_Customer">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Insurance__Plan___2A4B4B5E">
+    <End Role="Policy" Type="Self.Policy" Multiplicity="0..1" />
+    <End Role="Insurance_Customer" Type="Self.Insurance_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policy">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Insurance_Customer">
+        <PropertyRef Name="Plan_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database2ModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Insurance_Customer" EntityType="Self.Insurance_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Policy" EntityType="Self.Policy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Insurance__Car_I__29572725" Association="Self.FK__Insurance__Car_I__29572725">
+      <End Role="Vehicle" EntitySet="Vehicle" />
+      <End Role="Insurance_Customer" EntitySet="Insurance_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Insurance__cust___34C8D9D1" Association="Self.FK__Insurance__cust___34C8D9D1">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Insurance_Customer" EntitySet="Insurance_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Insurance__Plan___2A4B4B5E" Association="Self.FK__Insurance__Plan___2A4B4B5E">
+      <End Role="Policy" EntitySet="Policy" />
+      <End Role="Insurance_Customer" EntitySet="Insurance_Customer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
